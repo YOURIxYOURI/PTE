@@ -24,6 +24,7 @@ namespace AdminPanel.Views
 		public Users(ContentControl contentControl)
 		{
 			InitializeComponent();
+			AdminName.Content = Application.Current.Properties["Name"].ToString();
 			this.contentControl = contentControl;
 
 		}

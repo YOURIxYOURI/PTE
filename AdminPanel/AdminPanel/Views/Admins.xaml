@@ -66,7 +66,8 @@
         <Label Content="E-Mail" HorizontalAlignment="Left" Margin="790,201,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right"/>
         <PasswordBox x:Name="PassForm" HorizontalAlignment="Left" Margin="878,252,0,0" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
         <Label Content="Hasło" HorizontalAlignment="Left" Margin="782,252,0,0" VerticalAlignment="Top" Height="33" Width="78" FontSize="20" HorizontalContentAlignment="Right"/>
-        <PasswordBox x:Name="PassConfFOrm" HorizontalAlignment="Left" Margin="878,302,0,0" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
+        <PasswordBox x:Name="PassConfForm" HorizontalAlignment="Left" Margin="878,302,0,0" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
         <Label Content="Potwierdź Hasło" HorizontalAlignment="Left" Margin="703,302,0,0" VerticalAlignment="Top" Height="33" Width="157" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="686,440,0,0" VerticalAlignment="Top" Width="430" Height="62" FontSize="20" Foreground="#FFFB4444" HorizontalContentAlignment="Right" />
     </Grid>
 </UserControl>

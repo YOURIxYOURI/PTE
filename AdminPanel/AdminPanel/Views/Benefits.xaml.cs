@@ -23,6 +23,7 @@ namespace AdminPanel.Views
 		public Benefits(ContentControl contentControl)
 		{
 			InitializeComponent();
+			AdminName.Content = Application.Current.Properties["Name"].ToString();
 			this.contentControl = contentControl;
 		}
 		ContentControl contentControl;

@@ -16,6 +16,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using AdminPanel.Models;
 using System.Reflection.PortableExecutable;
+using System.Security.Cryptography;
+using System.Text.RegularExpressions;
 
 namespace AdminPanel.Views
 {
@@ -31,7 +33,10 @@ namespace AdminPanel.Views
 			AdminName.Content = Application.Current.Properties["Name"].ToString();
 			this.contentControl = contentControl;
 		}
+		public string Salt { get; set; }
 		ContentControl contentControl;
+		string info= "";
+		string pattern = @"^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\(\)\-\=\+_])(?=.{8,})";
 		string ConnectionString = $"Server={ConfigurationManager.AppSettings["Server"]};Database={ConfigurationManager.AppSettings["Database"]};Uid={ConfigurationManager.AppSettings["User"]};Pwd={ConfigurationManager.AppSettings["Password"]}";
 
 		private void OnChecked(bool value, int id)
@@ -91,10 +96,10 @@ namespace AdminPanel.Views
 				Madmins row = (Madmins)((Button)e.Source).DataContext;
 				int id = row.ID;
 				conn.Open();
-				if(Application.Current.Properties["IfMain"].ToString() == "1")
+				if(Application.Current.Properties["IfMain"].ToString() == "True")
 				{
 					MySqlCommand cmd = conn.CreateCommand();
-					cmd.CommandText = $"DELETE FROM admin WHERE ID = {id}";
+					cmd.CommandText = $"DELETE FROM Admins WHERE ID = {id}";
 					cmd.ExecuteNonQuery();
 					conn.Close();
 					DataGridView();
@@ -112,7 +117,7 @@ namespace AdminPanel.Views
 				var item = e.Row.Item as Madmins;
 
 				bool? newValue = ((CheckBox)e.EditingElement).IsChecked;
-				if (Application.Current.Properties["IfMain"].ToString() == "1")
+				if (Application.Current.Properties["IfMain"].ToString() == "True")
 				{
 					var id = item.ID;
 					OnChecked((bool)newValue, id);
@@ -127,13 +132,69 @@ namespace AdminPanel.Views
 				}
 			}
 		}
-
+		string HashPasword(string password)
+		{
+			const int keySize = 64;
+			const int iterations = 350000;
+			HashAlgorithmName hashAlgorithm = HashAlgorithmName.SHA512;
+			byte[] salt = RandomNumberGenerator.GetBytes(keySize);
+			Salt = Convert.ToBase64String(salt);
+			var hash = Rfc2898DeriveBytes.Pbkdf2(
+				Encoding.UTF8.GetBytes(password),
+				salt,
+				iterations,
+				hashAlgorithm,
+				keySize);
+			return Convert.ToHexString(hash);
+		}
 		private void OnSubmit(object sender, RoutedEventArgs e)
 		{
-			if (!string.IsNullOrEmpty(FnameForm.Text) && !string.IsNullOrEmpty(LnameForm.Text))
+			if (!string.IsNullOrEmpty(FnameForm.Text) && !string.IsNullOrEmpty(LnameForm.Text) && !string.IsNullOrEmpty(EmailForm.Text) && !string.IsNullOrEmpty(PassForm.Password) && !string.IsNullOrEmpty(PassConfForm.Password))
 			{
-
+				MySqlConnection conn = new MySqlConnection(ConnectionString);
+				conn.Open();
+				MySqlCommand cmd = conn.CreateCommand();
+				cmd.CommandText = $"SELECT * FROM admins WHERE Email = '{EmailForm.Text}'";
+				cmd.ExecuteNonQuery();
+				MySqlDataReader reader = cmd.ExecuteReader();
+				if (!reader.Read())
+				{
+					reader.Close();
+					if (PassForm.Password == PassConfForm.Password)
+					{
+						if (Regex.IsMatch(PassForm.Password,pattern))
+						{
+							cmd = conn.CreateCommand();
+							cmd.CommandText = $"INSERT INTO admins VALUES(null,'{FnameForm.Text}','{LnameForm.Text}','{EmailForm.Text}','{HashPasword(PassForm.Password)}',0,'{Salt}')";
+							cmd.ExecuteNonQuery();
+							FnameForm.Text = "";
+							LnameForm.Text = "";
+							EmailForm.Text = "";
+							PassForm.Password = "";
+							PassConfForm.Password = "";
+							DataGridView();
+						}
+						else
+						{
+							info = "Hasło powinno zawirać minimum 8 znaków,\n znaki specjalne, cyfry i duże litery";
+						}
+					}
+					else
+					{
+						info = "Prosze się upewnić że podane hasła są takie \n same";
+					}
+				}
+				else
+				{
+					info = "Administrator z takim adresem email już istnieje";
+				}
+				conn.Close();
 			}
+			else
+			{
+				info = "Proszę uzupełnić wszytkie pola";
+			}
+			InfoLabel.Content = info;
 		}
 	}
 }
