@@ -1,0 +1,18 @@
+﻿<UserControl x:Class="AdminPanel.Views.Users"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdminPanel.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1200">
+    <Grid>
+        <Label Content="Admin Panel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="264" FontWeight="Bold" FontFamily="Calibri" FontSize="48"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Uzytkownicy" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Height="60" Width="210" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Users" />
+        <Label Content="" HorizontalAlignment="Left" Margin="916,10,0,0" VerticalAlignment="Top" FontSize="24" Width="251"  HorizontalContentAlignment="Right" Name="AdminName"/>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Template="{DynamicResource ButtonTemplate1}" Content="Wyloguj się" HorizontalAlignment="Left" Margin="1064,36,0,0" VerticalAlignment="Top" FontSize="18" Width="103" Foreground="#FFED8181" Click="LogOut"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins"/>
+
+    </Grid>
+</UserControl>
