@@ -6,32 +6,6 @@
              xmlns:local="clr-namespace:AdminPanel.Views"
              mc:Ignorable="d" 
              d:DesignHeight="700" d:DesignWidth="1200">
-    <UserControl.Resources>
-        <!-- This style is used for buttons, to remove the WPF default 'animated' mouse over effect -->
-        <Style x:Key="DefaultHover" TargetType="Button">
-            <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Name="border" 
-                        BorderThickness="1"
-                        Padding="4,2" 
-                        BorderBrush="DarkGray" 
-                        CornerRadius="3" 
-                        Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="border" Property="BorderBrush" Value="Black" />
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </UserControl.Resources>
     <Grid>
         <Label Content="Admin Panel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="264" FontWeight="Bold" FontFamily="Calibri" FontSize="48"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Uzytkownicy" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Height="60" Width="210" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Users" />
@@ -57,17 +31,17 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="FnameForm" HorizontalAlignment="Left" Margin="878,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
-        <Label Content="Imię" HorizontalAlignment="Left" Margin="790,102,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right" />
-        <TextBox x:Name="LnameForm" HorizontalAlignment="Left" Margin="878,150,0,0" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
-        <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="765,150,0,0" VerticalAlignment="Top" Height="33" Width="95" FontSize="20" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="FnameForm" HorizontalAlignment="Left" Margin="747,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Imię" HorizontalAlignment="Left" Margin="672,102,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="LnameForm" HorizontalAlignment="Left" Margin="747,150,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="647,150,0,0" VerticalAlignment="Top" Height="33" Width="95" FontSize="20" HorizontalContentAlignment="Right"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Dodaj " HorizontalAlignment="Left" Margin="1012,366,0,0" VerticalAlignment="Top" Height="50" Width="104" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" />
-        <TextBox x:Name="EmailForm" HorizontalAlignment="Left" Margin="878,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
-        <Label Content="E-Mail" HorizontalAlignment="Left" Margin="790,201,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right"/>
-        <PasswordBox x:Name="PassForm" HorizontalAlignment="Left" Margin="878,252,0,0" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
-        <Label Content="Hasło" HorizontalAlignment="Left" Margin="782,252,0,0" VerticalAlignment="Top" Height="33" Width="78" FontSize="20" HorizontalContentAlignment="Right"/>
-        <PasswordBox x:Name="PassConfForm" HorizontalAlignment="Left" Margin="878,302,0,0" VerticalAlignment="Top" Width="238" Height="33" FontSize="24"/>
-        <Label Content="Potwierdź Hasło" HorizontalAlignment="Left" Margin="703,302,0,0" VerticalAlignment="Top" Height="33" Width="157" FontSize="20" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="EmailForm" HorizontalAlignment="Left" Margin="747,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="E-Mail" HorizontalAlignment="Left" Margin="672,201,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right"/>
+        <PasswordBox x:Name="PassForm" HorizontalAlignment="Left" Margin="747,252,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Hasło" HorizontalAlignment="Left" Margin="664,252,0,0" VerticalAlignment="Top" Height="33" Width="78" FontSize="20" HorizontalContentAlignment="Right"/>
+        <PasswordBox x:Name="PassConfForm" HorizontalAlignment="Left" Margin="747,302,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Potwierdź Hasło" HorizontalAlignment="Left" Margin="585,302,0,0" VerticalAlignment="Top" Height="33" Width="157" FontSize="20" HorizontalContentAlignment="Right"/>
         <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="686,440,0,0" VerticalAlignment="Top" Width="430" Height="62" FontSize="20" Foreground="#FFFB4444" HorizontalContentAlignment="Right" />
     </Grid>
 </UserControl>

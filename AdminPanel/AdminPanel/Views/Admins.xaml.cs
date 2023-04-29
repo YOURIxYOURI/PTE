@@ -167,6 +167,7 @@ namespace AdminPanel.Views
 							cmd = conn.CreateCommand();
 							cmd.CommandText = $"INSERT INTO admins VALUES(null,'{FnameForm.Text}','{LnameForm.Text}','{EmailForm.Text}','{HashPasword(PassForm.Password)}',0,'{Salt}')";
 							cmd.ExecuteNonQuery();
+							info = "";
 							FnameForm.Text = "";
 							LnameForm.Text = "";
 							EmailForm.Text = "";
