@@ -30,7 +30,6 @@ namespace AdminPanel.Views
 			DataGridView();
 			AdminName.Content = Application.Current.Properties["Name"].ToString();
 			this.contentControl = contentControl;
-
 		}
 		ContentControl contentControl;
 		string info = "";
@@ -94,7 +93,9 @@ namespace AdminPanel.Views
 		}
 		private void Edit(object sender, RoutedEventArgs e)
 		{
-
+			Musers row = (Musers)((Button)e.Source).DataContext;
+			int id = row.ID;
+			contentControl.Content = new UserEdit(contentControl, id);
 		}
 		private void OnSubmit(object sender, RoutedEventArgs e)
 		{

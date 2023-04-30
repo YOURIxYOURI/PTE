@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="AdminPanel.Views.UserEdit"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AdminPanel.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="1200">
+    <Grid>
+        <Label Content="Admin Panel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="264" FontWeight="Bold" FontFamily="Calibri" FontSize="48"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Uzytkownicy" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Height="60" Width="210" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Users" />
+        <Label Content="" HorizontalAlignment="Left" Margin="916,10,0,0" VerticalAlignment="Top" FontSize="24" Width="251"  HorizontalContentAlignment="Right" Name="AdminName"/>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Template="{DynamicResource ButtonTemplate1}" Content="Wyloguj się" HorizontalAlignment="Left" Margin="1064,36,0,0" VerticalAlignment="Top" FontSize="18" Width="103" Foreground="#FFED8181" Click="LogOut"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins"/>
+
+        <TextBox x:Name="FnameForm" HorizontalAlignment="Left" Margin="289,89,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Imię" HorizontalAlignment="Left" Margin="152,89,0,0" VerticalAlignment="Top" Height="38" Width="132" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="LnameForm" HorizontalAlignment="Left" Margin="289,127,0,0" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="152,127,0,0" VerticalAlignment="Top" Height="33" Width="132" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Edytuj" HorizontalAlignment="Left" Margin="828,232,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" />
+        <TextBox x:Name="EmailForm" HorizontalAlignment="Left" Margin="289,165,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="E-Mail" HorizontalAlignment="Left" Margin="152,165,0,0" VerticalAlignment="Top" Height="33" Width="132" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="289,528,0,0" VerticalAlignment="Top" Width="511" Height="62" FontSize="20" Foreground="#FFFB4444" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="AdressForm" HorizontalAlignment="Left" Margin="289,317,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Adres" HorizontalAlignment="Left" Margin="152,317,0,0" VerticalAlignment="Top" Height="33" Width="132" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="GradeForm" HorizontalAlignment="Left" Margin="289,355,0,0" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Wykształcenie" HorizontalAlignment="Left" Margin="23,355,0,0" VerticalAlignment="Top" Height="33" Width="261" FontSize="20" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="SchoolNameForm" HorizontalAlignment="Left" Margin="289,393,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Nazwa ukończonej szkoły" HorizontalAlignment="Left" Margin="23,393,0,0" VerticalAlignment="Top" Height="38" Width="261" FontSize="20" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="GradeYearForm" HorizontalAlignment="Left" Margin="289,431,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Rok zdobycia wykształcenia" HorizontalAlignment="Left" Margin="23,431,0,0" VerticalAlignment="Top" Height="38" Width="261" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="WorkForm" HorizontalAlignment="Left" Margin="289,469,0,0" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Miejsce Pracy" HorizontalAlignment="Left" Margin="152,469,0,0" VerticalAlignment="Top" Height="43" Width="132" FontSize="20" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="PhoneForm" HorizontalAlignment="Left" Margin="289,279,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Telefon" HorizontalAlignment="Left" Margin="152,279,0,0" VerticalAlignment="Top" Height="33" Width="132" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="BirthPlaceForm" HorizontalAlignment="Left" Margin="289,241,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="513" Height="33" FontSize="24"/>
+        <Label Content="Miejsce urodzenia" HorizontalAlignment="Left" Margin="23,241,0,0" VerticalAlignment="Top" Height="33" Width="261" FontSize="20" HorizontalContentAlignment="Right" />
+        <DatePicker x:Name="BirthDateForm" HorizontalAlignment="Left" Margin="289,203,0,0"  VerticalAlignment="Top" Width="513" Height="33" FontSize="20" FirstDayOfWeek="Monday" Text="qwe"/>
+        <Label Content="Data urodzenia" HorizontalAlignment="Left" Margin="23,203,0,0" VerticalAlignment="Top" Height="33" Width="261" FontSize="20" HorizontalContentAlignment="Right" />
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Usuń" HorizontalAlignment="Left" Margin="828,170,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="Delete" />
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Wstecz" HorizontalAlignment="Left" Margin="827,106,0,0" VerticalAlignment="Top" Height="50" Width="215" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="GoTo" Tag="Users"/>
+    </Grid>
+</UserControl>

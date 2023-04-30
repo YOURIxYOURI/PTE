@@ -45,3 +45,5 @@ D:\projects\PTE\AdminPanel\AdminPanel\obj\Debug\net6.0-windows\Views\Benefits.g.
 D:\projects\PTE\AdminPanel\AdminPanel\obj\Debug\net6.0-windows\Views\Admins.baml
 D:\projects\PTE\AdminPanel\AdminPanel\obj\Debug\net6.0-windows\Views\Benefits.baml
 D:\projects\PTE\AdminPanel\AdminPanel\obj\Debug\net6.0-windows\App.baml
+D:\projects\PTE\AdminPanel\AdminPanel\obj\Debug\net6.0-windows\Views\UserEdit.g.cs
+D:\projects\PTE\AdminPanel\AdminPanel\obj\Debug\net6.0-windows\Views\UserEdit.baml
