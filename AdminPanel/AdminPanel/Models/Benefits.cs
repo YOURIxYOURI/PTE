@@ -12,5 +12,6 @@ namespace AdminPanel.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public string QRkey { get; set; }
+        public string EndDate { get; set; }
     }
 }

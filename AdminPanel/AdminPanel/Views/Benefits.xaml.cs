@@ -1,7 +1,11 @@
-﻿using System;
+﻿using AdminPanel.Models;
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +29,11 @@ namespace AdminPanel.Views
 			InitializeComponent();
 			AdminName.Content = Application.Current.Properties["Name"].ToString();
 			this.contentControl = contentControl;
+			DataGridView();
 		}
 		ContentControl contentControl;
+		string info = "";
+		string ConnectionString = $"Server={ConfigurationManager.AppSettings["Server"]};Database={ConfigurationManager.AppSettings["Database"]};Uid={ConfigurationManager.AppSettings["User"]};Pwd={ConfigurationManager.AppSettings["Password"]}";
 		public void GoTo(object sender, RoutedEventArgs e)
 		{
 			switch (((Button)sender).Tag)
@@ -48,6 +55,68 @@ namespace AdminPanel.Views
 			Application.Current.Properties["ID"] = "";
 			Application.Current.Properties["IfMain"] = "";
 			this.contentControl.Content = new Login(contentControl);
+		}
+		private void DataGridView()
+		{
+			MySqlConnection conn = new MySqlConnection(ConnectionString);
+			conn.Open();
+			MySqlCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"SELECT * FROM Benefits";
+			cmd.ExecuteNonQuery();
+			IList<Mbenefits> Benefits = new List<Mbenefits>();
+			MySqlDataReader reader = cmd.ExecuteReader();
+			while (reader.Read())
+			{
+				Benefits.Add(new Mbenefits() { ID = reader.GetInt32("ID"), Name = reader.GetString("Name"), QRkey = reader.GetString("QRkey"), EndDate = reader.GetString("EndDate") });
+			}
+			conn.Close();
+			DGbenefits.ItemsSource = Benefits;
+		}
+		private void Delete(object sender, RoutedEventArgs e)
+		{
+			MySqlConnection conn = new MySqlConnection(ConnectionString);
+			Mbenefits row = (Mbenefits)((Button)e.Source).DataContext;
+			int id = row.ID;
+			conn.Open();
+			MySqlCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"DELETE FROM benefitstouser WHERE BenefitID = {id}";
+			cmd.ExecuteNonQuery();
+			cmd = conn.CreateCommand();
+			cmd.CommandText = $"DELETE FROM Benefits WHERE ID = {id}";
+			cmd.ExecuteNonQuery();
+			conn.Close();
+			DataGridView();
+		}
+		private void Edit(object sender, RoutedEventArgs e)
+		{
+			Musers row = (Musers)((Button)e.Source).DataContext;
+			int id = row.ID;
+			contentControl.Content = new BenefitEdit(contentControl, id);
+		}
+		private void OnSubmit(object sender, RoutedEventArgs e)
+		{
+			if (!string.IsNullOrEmpty(NameForm.Text) && !string.IsNullOrEmpty(DescriptionForm.Text) && !string.IsNullOrEmpty(QRForm.Text) && EndDateForm.SelectedDate != null)
+			{
+				MySqlConnection conn = new MySqlConnection(ConnectionString);
+				conn.Open();
+				MySqlCommand cmd = conn.CreateCommand();
+				cmd = conn.CreateCommand();
+				cmd.CommandText = $"INSERT INTO benefits VALUES(null,'{NameForm.Text}','{DescriptionForm.Text}','{QRForm.Text}','{EndDateForm.SelectedDate}')";
+				cmd.ExecuteNonQuery();
+				info = "";
+				NameForm.Text = "";
+				DescriptionForm.Text = "";
+				QRForm.Text = "";
+				EndDateForm.Text = "Wybierz date";
+				EndDateForm.SelectedDate = null;
+				DataGridView();
+				conn.Close();
+			}
+			else
+			{
+				info = "Proszę uzupełnić wszytkie pola";
+			}
+			InfoLabel.Content = info;
 		}
 	}
 }

@@ -81,6 +81,9 @@ namespace AdminPanel.Views
 			if (Application.Current.Properties["IfMain"].ToString() == "True")
 			{
 				MySqlCommand cmd = conn.CreateCommand();
+				cmd.CommandText = $"DELETE FROM benefitstouser WHERE UserID = {id}";
+				cmd.ExecuteNonQuery();
+				cmd = conn.CreateCommand();
 				cmd.CommandText = $"DELETE FROM Users WHERE ID = {id}";
 				cmd.ExecuteNonQuery();
 				conn.Close();

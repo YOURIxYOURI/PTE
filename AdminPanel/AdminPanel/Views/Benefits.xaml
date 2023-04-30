@@ -14,5 +14,44 @@
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins"/>
 
+        <DataGrid x:Name="DGbenefits" Margin="0,75,814,8" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="150"/>
+                <DataGridTextColumn Header="Data zakończenia" Binding="{Binding EndDate}" Width="110"/>
+                <DataGridTemplateColumn Header="Edytuj">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Edytuj" Click="Edit" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Header="Usuń">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Usuń" Click="Delete" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox x:Name="NameForm" HorizontalAlignment="Left" Margin="747,102,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Nazwa" HorizontalAlignment="Left" Margin="672,102,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="DescriptionForm" HorizontalAlignment="Left" Margin="747,150,0,0" VerticalAlignment="Top" Width="369" Height="98" FontSize="24"/>
+        <Label Content="Opis" HorizontalAlignment="Left" Margin="647,150,0,0" VerticalAlignment="Top" Height="49" Width="95" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Dodaj " HorizontalAlignment="Left" Margin="1012,363,0,0" VerticalAlignment="Top" Height="50" Width="104" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" />
+        <TextBox x:Name="QRForm" HorizontalAlignment="Left" Margin="747,266,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Zawartość kodu QR" HorizontalAlignment="Left" Margin="552,266,0,0" VerticalAlignment="Top" Height="33" Width="190" FontSize="20" HorizontalContentAlignment="Right"/>
+        <DatePicker x:Name="EndDateForm" HorizontalAlignment="Left" Margin="747,317,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="20"/>
+        <Label Content="Data Zakończenia" HorizontalAlignment="Left" Margin="573,317,0,0" VerticalAlignment="Top" Height="33" Width="169" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="712,447,0,0" VerticalAlignment="Top" Width="409" Height="62" FontSize="20" Foreground="#FFFB4444" HorizontalContentAlignment="Right" />
+        <CheckBox x:Name="IfAllCheck" Content="" HorizontalAlignment="Left" Margin="946,368,0,0" VerticalAlignment="Top" Height="16" Width="16" >
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <Label Content="Czy przypisać do każdego użytkownika" HorizontalAlignment="Left" Margin="557,367,0,0" VerticalAlignment="Top" Height="46" Width="365" FontSize="20" HorizontalContentAlignment="Right"/>
     </Grid>
 </UserControl>

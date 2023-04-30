@@ -22,7 +22,7 @@
                 <DataGridTemplateColumn Header="Edytuj">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Edytuj" Click="Edit"/>
+                            <Button Content="Edytuj" Click="Edit" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -30,7 +30,7 @@
                 <DataGridTemplateColumn Header="Usuń">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Usuń" Click="Delete"/>
+                            <Button Content="Usuń" Click="Delete" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

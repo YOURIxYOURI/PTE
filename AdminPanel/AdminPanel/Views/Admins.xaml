@@ -25,7 +25,7 @@
                 <DataGridTemplateColumn Header="Usuń">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Usuń" Click="Delete"/>
+                            <Button Content="Usuń" Click="Delete" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
