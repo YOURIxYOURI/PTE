@@ -36,6 +36,7 @@ namespace AdminPanel.Views
 		public string Salt { get; set; }
 		ContentControl contentControl;
 		string info= "";
+		IList<Madmins> admins = new List<Madmins>();
 		string pattern = @"^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*\(\)\-\=\+_])(?=.{8,})";
 		string ConnectionString = $"Server={ConfigurationManager.AppSettings["Server"]};Database={ConfigurationManager.AppSettings["Database"]};Uid={ConfigurationManager.AppSettings["User"]};Pwd={ConfigurationManager.AppSettings["Password"]}";
 
@@ -73,7 +74,6 @@ namespace AdminPanel.Views
 			Application.Current.Properties["IfMain"] = "";
 			this.contentControl.Content = new Login(contentControl);
 		}
-
 		private void DataGridView()
 		{
 			MySqlConnection conn = new MySqlConnection(ConnectionString);
@@ -81,7 +81,6 @@ namespace AdminPanel.Views
 			MySqlCommand cmd = conn.CreateCommand();
 			cmd.CommandText = $"SELECT * FROM admins";
 			cmd.ExecuteNonQuery();
-			IList<Madmins> admins= new List<Madmins>();
 			MySqlDataReader reader = cmd.ExecuteReader();
 			while (reader.Read())
 			{
@@ -196,6 +195,12 @@ namespace AdminPanel.Views
 				info = "Proszę uzupełnić wszytkie pola";
 			}
 			InfoLabel.Content = info;
+		}
+		private void OnSearch(object sender, RoutedEventArgs e)
+		{
+			var Searched = admins.Where(adm => adm.FirstName.Contains(SearchBar.Text) || adm.LastName.Contains(SearchBar.Text) || adm.Email.Contains(SearchBar.Text));
+			DGadmins.ItemsSource = Searched;
+			DGadmins.Items.Refresh();
 		}
 	}
 }

@@ -13,7 +13,7 @@
         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Template="{DynamicResource ButtonTemplate1}" Content="Wyloguj się" HorizontalAlignment="Left" Margin="1064,36,0,0" VerticalAlignment="Top" FontSize="18" Width="103" Foreground="#FFED8181" Click="LogOut" Cursor="Hand"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits" Cursor="Hand"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins" Cursor="Hand"/>
-        <DataGrid x:Name="DGusers" Margin="0,75,720,8" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="DGusers" Margin="0,127,720,0" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}" Width="100"/>
@@ -60,5 +60,7 @@
         <Label Content="Miejsce urodzenia" HorizontalAlignment="Left" Margin="471,241,0,0" VerticalAlignment="Top" Height="33" Width="261" FontSize="20" HorizontalContentAlignment="Right" />
         <DatePicker x:Name="BirthDateForm" HorizontalAlignment="Left" Margin="737,203,0,0"  VerticalAlignment="Top" Width="369" Height="33" FontSize="20" FirstDayOfWeek="Monday" Text="qwe"/>
         <Label Content="Data urodzenia" HorizontalAlignment="Left" Margin="471,203,0,0" VerticalAlignment="Top" Height="33" Width="261" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="SearchBar" HorizontalAlignment="Left" Margin="10,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="374" Height="33" FontSize="24"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Szukaj" HorizontalAlignment="Left" Margin="389,88,0,0" VerticalAlignment="Top" Height="34" Width="72" FontSize="22" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSearch" Cursor="Hand"/>
     </Grid>
 </UserControl>

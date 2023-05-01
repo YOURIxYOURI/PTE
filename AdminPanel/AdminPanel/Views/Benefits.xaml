@@ -14,7 +14,7 @@
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits" Cursor="Hand"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins" Cursor="Hand"/>
 
-        <DataGrid x:Name="DGbenefits" Margin="0,75,814,8" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid x:Name="DGbenefits" Margin="0,127,814,8" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Nazwa" Binding="{Binding Name}" Width="150"/>
@@ -47,5 +47,7 @@
         <DatePicker x:Name="EndDateForm" HorizontalAlignment="Left" Margin="747,355,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="20"/>
         <Label Content="Data Zakończenia" HorizontalAlignment="Left" Margin="573,355,0,0" VerticalAlignment="Top" Height="33" Width="169" FontSize="20" HorizontalContentAlignment="Right"/>
         <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="712,485,0,0" VerticalAlignment="Top" Width="409" Height="62" FontSize="20" Foreground="#FFFB4444" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="SearchBar" HorizontalAlignment="Left" Margin="6,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="272" Height="34" FontSize="24"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Szukaj" HorizontalAlignment="Left" Margin="283,88,0,0" VerticalAlignment="Top" Height="34" Width="72" FontSize="22" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSearch" Cursor="Hand"/>
     </Grid>
 </UserControl>

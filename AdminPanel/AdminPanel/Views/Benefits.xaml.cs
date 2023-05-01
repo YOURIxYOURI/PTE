@@ -33,6 +33,7 @@ namespace AdminPanel.Views
 		}
 		ContentControl contentControl;
 		string info = "";
+		IList<Mbenefits> benefits = new List<Mbenefits>();
 		string ConnectionString = $"Server={ConfigurationManager.AppSettings["Server"]};Database={ConfigurationManager.AppSettings["Database"]};Uid={ConfigurationManager.AppSettings["User"]};Pwd={ConfigurationManager.AppSettings["Password"]}";
 		public void GoTo(object sender, RoutedEventArgs e)
 		{
@@ -63,14 +64,13 @@ namespace AdminPanel.Views
 			MySqlCommand cmd = conn.CreateCommand();
 			cmd.CommandText = $"SELECT * FROM Benefits";
 			cmd.ExecuteNonQuery();
-			IList<Mbenefits> Benefits = new List<Mbenefits>();
 			MySqlDataReader reader = cmd.ExecuteReader();
 			while (reader.Read())
 			{
-				Benefits.Add(new Mbenefits() { ID = reader.GetInt32("ID"), Name = reader.GetString("Name"), QRkey = reader.GetString("QRkey"), EndDate = reader.GetString("EndDate") });
+				benefits.Add(new Mbenefits() { ID = reader.GetInt32("ID"), Name = reader.GetString("Name"), QRkey = reader.GetString("QRkey"), EndDate = reader.GetString("EndDate") });
 			}
 			conn.Close();
-			DGbenefits.ItemsSource = Benefits;
+			DGbenefits.ItemsSource = benefits;
 		}
 		private void Delete(object sender, RoutedEventArgs e)
 		{
@@ -117,6 +117,12 @@ namespace AdminPanel.Views
 				info = "Proszę uzupełnić wszytkie pola";
 			}
 			InfoLabel.Content = info;
+		}
+		private void OnSearch(object sender, RoutedEventArgs e)
+		{
+			var Searched = benefits.Where(benf => benf.Name.Contains(SearchBar.Text) || benf.EndDate.Contains(SearchBar.Text));
+			DGbenefits.ItemsSource = Searched;
+			DGbenefits.Items.Refresh();
 		}
 	}
 }

@@ -33,6 +33,7 @@ namespace AdminPanel.Views
 		}
 		ContentControl contentControl;
 		string info = "";
+		IList<Musers> users = new List<Musers>();
 		string ConnectionString = $"Server={ConfigurationManager.AppSettings["Server"]};Database={ConfigurationManager.AppSettings["Database"]};Uid={ConfigurationManager.AppSettings["User"]};Pwd={ConfigurationManager.AppSettings["Password"]}";
 		public void GoTo(object sender, RoutedEventArgs e)
 		{
@@ -63,7 +64,6 @@ namespace AdminPanel.Views
 			MySqlCommand cmd = conn.CreateCommand();
 			cmd.CommandText = $"SELECT * FROM Users";
 			cmd.ExecuteNonQuery();
-			IList<Musers> users = new List<Musers>();
 			MySqlDataReader reader = cmd.ExecuteReader();
 			while (reader.Read())
 			{
@@ -142,6 +142,12 @@ namespace AdminPanel.Views
 				info = "Proszę uzupełnić wszytkie pola";
 			}
 			InfoLabel.Content = info;
+		}
+		private void OnSearch(object sender, RoutedEventArgs e)
+		{
+			var Searched = users.Where(user => user.FirstName.Contains(SearchBar.Text) || user.LastName.Contains(SearchBar.Text) || user.Email.Contains(SearchBar.Text));
+			DGusers.ItemsSource = Searched;
+			DGusers.Items.Refresh();
 		}
 	}
 }

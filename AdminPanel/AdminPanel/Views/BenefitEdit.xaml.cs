@@ -188,5 +188,11 @@ namespace AdminPanel.Views
 			DGusers.ItemsSource = users;
 			DGusers.Items.Refresh();
 		}
+		private void OnSearch(object sender, RoutedEventArgs e)
+		{
+			var Searched = users.Where(user => user.FirstName.Contains(SearchBar.Text) || user.LastName.Contains(SearchBar.Text) || user.Email.Contains(SearchBar.Text));
+			DGusers.ItemsSource = Searched;
+			DGusers.Items.Refresh();
+		}
 	}
 }

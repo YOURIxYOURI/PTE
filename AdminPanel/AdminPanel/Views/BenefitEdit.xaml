@@ -31,7 +31,7 @@
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Edytuj" HorizontalAlignment="Left" Margin="489,450,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" Cursor="Hand"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Usuń" HorizontalAlignment="Left" Margin="254,450,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="Delete" Cursor="Hand"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Wstecz" HorizontalAlignment="Left" Margin="14,450,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="GoTo" Tag="Benefits" Cursor="Hand"/>
-        <DataGrid x:Name="DGusers" Margin="720,83,0,0" AutoGenerateColumns="False" CanUserAddRows="False" >
+        <DataGrid x:Name="DGusers" Margin="720,142,0,0" AutoGenerateColumns="False" CanUserAddRows="False" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
                 <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}" Width="100"/>
@@ -41,5 +41,7 @@
                 </DataGridCheckBoxColumn>
             </DataGrid.Columns>
         </DataGrid>
+        <TextBox x:Name="SearchBar" HorizontalAlignment="Left" Margin="727,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="374" Height="33" FontSize="24"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Szukaj" HorizontalAlignment="Left" Margin="1106,101,0,0" VerticalAlignment="Top" Height="34" Width="72" FontSize="22" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSearch" Cursor="Hand"/>
     </Grid>
 </UserControl>
