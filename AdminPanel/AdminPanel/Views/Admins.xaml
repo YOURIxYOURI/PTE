@@ -8,11 +8,11 @@
              d:DesignHeight="700" d:DesignWidth="1200">
     <Grid>
         <Label Content="Admin Panel" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="73" Width="264" FontWeight="Bold" FontFamily="Calibri" FontSize="48"/>
-        <Button Template="{DynamicResource ButtonTemplate1}" Content="Uzytkownicy" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Height="60" Width="210" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Users" />
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Uzytkownicy" HorizontalAlignment="Left" Margin="279,10,0,0" VerticalAlignment="Top" Height="60" Width="210" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Users" Cursor="Hand"/>
         <Label Content="" HorizontalAlignment="Left" Margin="916,10,0,0" VerticalAlignment="Top" FontSize="24" Width="251"  HorizontalContentAlignment="Right" Name="AdminName"/>
-        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Template="{DynamicResource ButtonTemplate1}" Content="Wyloguj się" HorizontalAlignment="Left" Margin="1064,36,0,0" VerticalAlignment="Top" FontSize="18" Width="103" Foreground="#FFED8181" Click="LogOut"/>
-        <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits"/>
-        <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins"/>
+        <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Template="{DynamicResource ButtonTemplate1}" Content="Wyloguj się" HorizontalAlignment="Left" Margin="1064,36,0,0" VerticalAlignment="Top" FontSize="18" Width="103" Foreground="#FFED8181" Click="LogOut" Cursor="Hand"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits" Cursor="Hand"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins" Cursor="Hand"/>
         <DataGrid x:Name="DGadmins" Margin="0,83,674,0" AutoGenerateColumns="False" CanUserAddRows="False" CellEditEnding="DataGrid_CellEditEnding">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
@@ -25,7 +25,7 @@
                 <DataGridTemplateColumn Header="Usuń">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Usuń" Click="Delete" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE"/>
+                            <Button Content="Usuń" Click="Delete" Template="{DynamicResource ButtonTemplate1}" Background="#FF3A7532" Foreground="#FFDEDEDE" Cursor="Hand"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
@@ -35,7 +35,7 @@
         <Label Content="Imię" HorizontalAlignment="Left" Margin="672,102,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right" />
         <TextBox x:Name="LnameForm" HorizontalAlignment="Left" Margin="747,150,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
         <Label Content="Nazwisko" HorizontalAlignment="Left" Margin="647,150,0,0" VerticalAlignment="Top" Height="33" Width="95" FontSize="20" HorizontalContentAlignment="Right"/>
-        <Button Template="{DynamicResource ButtonTemplate1}" Content="Dodaj " HorizontalAlignment="Left" Margin="1012,366,0,0" VerticalAlignment="Top" Height="50" Width="104" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" />
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Dodaj " HorizontalAlignment="Left" Margin="1012,366,0,0" VerticalAlignment="Top" Height="50" Width="104" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" Cursor="Hand"/>
         <TextBox x:Name="EmailForm" HorizontalAlignment="Left" Margin="747,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
         <Label Content="E-Mail" HorizontalAlignment="Left" Margin="672,201,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right"/>
         <PasswordBox x:Name="PassForm" HorizontalAlignment="Left" Margin="747,252,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>

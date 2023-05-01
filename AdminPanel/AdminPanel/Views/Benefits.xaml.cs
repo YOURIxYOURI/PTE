@@ -89,7 +89,7 @@ namespace AdminPanel.Views
 		}
 		private void Edit(object sender, RoutedEventArgs e)
 		{
-			Musers row = (Musers)((Button)e.Source).DataContext;
+			Mbenefits row = (Mbenefits)((Button)e.Source).DataContext;
 			int id = row.ID;
 			contentControl.Content = new BenefitEdit(contentControl, id);
 		}

@@ -20,5 +20,6 @@ namespace AdminPanel.Models
 		public string SchoolName { get; set; }
 		public string GraduationYear { get; set; }
 		public string WorkPlace { get; set; }
+		public bool IfBenefit { get; set; }
 	}
 }

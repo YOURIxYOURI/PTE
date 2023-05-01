@@ -13,5 +13,33 @@
         <Button Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" Template="{DynamicResource ButtonTemplate1}" Content="Wyloguj się" HorizontalAlignment="Left" Margin="1064,36,0,0" VerticalAlignment="Top" FontSize="18" Width="103" Foreground="#FFED8181" Click="LogOut"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Benefity" Margin="494,10,0,0" VerticalAlignment="Top" Height="60" Width="182" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" HorizontalAlignment="Left" Click="GoTo" Tag="Benefits"/>
         <Button Template="{DynamicResource ButtonTemplate1}" Content="Administratorzy" HorizontalAlignment="Left" Margin="681,9,0,0" VerticalAlignment="Top" Height="60" Width="241" Style="{StaticResource {x:Static ToolBar.ButtonStyleKey}}" FontSize="32" Click="GoTo" Tag="Admins"/>
+        <TextBox x:Name="NameForm" HorizontalAlignment="Left" Margin="209,94,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Nazwa" HorizontalAlignment="Left" Margin="134,94,0,0" VerticalAlignment="Top" Height="33" Width="70" FontSize="20" HorizontalContentAlignment="Right" />
+        <TextBox x:Name="DescriptionForm" HorizontalAlignment="Left" Margin="209,142,0,0" VerticalAlignment="Top" Width="369" Height="139" FontSize="24" AcceptsReturn="True"/>
+        <Label Content="Opis" HorizontalAlignment="Left" Margin="109,142,0,0" VerticalAlignment="Top" Height="49" Width="95" FontSize="20" HorizontalContentAlignment="Right"/>
+        <TextBox x:Name="QRForm" HorizontalAlignment="Left" Margin="209,296,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="369" Height="33" FontSize="24"/>
+        <Label Content="Zawartość kodu QR" HorizontalAlignment="Left" Margin="14,296,0,0" VerticalAlignment="Top" Height="33" Width="190" FontSize="20" HorizontalContentAlignment="Right"/>
+        <DatePicker x:Name="EndDateForm" HorizontalAlignment="Left" Margin="209,347,0,0" VerticalAlignment="Top" Width="369" Height="33" FontSize="20"/>
+        <Label Content="Data Zakończenia" HorizontalAlignment="Left" Margin="35,347,0,0" VerticalAlignment="Top" Height="33" Width="169" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="177,518,0,0" VerticalAlignment="Top" Width="408" Height="62" FontSize="20" Foreground="#FFFB4444" HorizontalContentAlignment="Right" />
+        <CheckBox Checked="CheckBoxChanged" Unchecked="CheckBoxChanged" x:Name="IfAllCheck" Content="" HorizontalAlignment="Left" Margin="376,400,0,0" VerticalAlignment="Top" Height="16" Width="16" >
+            <CheckBox.LayoutTransform>
+                <ScaleTransform ScaleX="2" ScaleY="2" />
+            </CheckBox.LayoutTransform>
+        </CheckBox>
+        <Label Content="Przypisz każdego użytkownika" HorizontalAlignment="Left" Margin="-14,399,0,0" VerticalAlignment="Top" Height="46" Width="366" FontSize="20" HorizontalContentAlignment="Right"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Edytuj" HorizontalAlignment="Left" Margin="489,450,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnSubmit" Cursor="Hand"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Usuń" HorizontalAlignment="Left" Margin="254,450,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="Delete" Cursor="Hand"/>
+        <Button Template="{DynamicResource ButtonTemplate1}" Content="Wstecz" HorizontalAlignment="Left" Margin="14,450,0,0" VerticalAlignment="Top" Height="50" Width="214" FontSize="28" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="GoTo" Tag="Benefits" Cursor="Hand"/>
+        <DataGrid x:Name="DGusers" Margin="720,83,0,0" AutoGenerateColumns="False" CanUserAddRows="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}" Width="100"/>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding LastName}" Width="100"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="150"/>
+                <DataGridCheckBoxColumn Header="Czy Przypisany" Binding="{Binding IfBenefit}">
+                </DataGridCheckBoxColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </UserControl>

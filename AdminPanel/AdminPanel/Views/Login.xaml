@@ -14,7 +14,7 @@
         <Label Content="E-mail" HorizontalAlignment="Left" Margin="316,210,0,0" VerticalAlignment="Top" Height="56" Width="124" FontSize="36"/>
         <PasswordBox x:Name="PassForm" HorizontalAlignment="Left" Margin="472,0,0,0" VerticalAlignment="Center" Width="430" Height="56" FontSize="40"/>
         <Label Content="Hasło" HorizontalAlignment="Left" Margin="316,0,0,0" VerticalAlignment="Center" Height="56" Width="124" FontSize="36"/>
-        <Button Template="{DynamicResource ButtonTemplate1}" Content="Zaloguj się" HorizontalAlignment="Left" Margin="687,427,0,0" VerticalAlignment="Top" Height="71" Width="215" FontSize="40" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnLogin" />
+        <Button Cursor="Hand" Template="{DynamicResource ButtonTemplate1}" Content="Zaloguj się" HorizontalAlignment="Left" Margin="687,427,0,0" VerticalAlignment="Top" Height="71" Width="215" FontSize="40" Background="#FF3A7532" Foreground="#FFDEDEDE" Click="OnLogin" />
         <Label x:Name="InfoLabel"  HorizontalAlignment="Left" Margin="472,541,0,0" VerticalAlignment="Top" Width="430" Height="62" FontSize="20" Foreground="#FFFB4444"  />
 
     </Grid>
