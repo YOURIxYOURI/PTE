@@ -71,6 +71,7 @@ namespace AdminPanel.Views
 			}
 			conn.Close();
 			DGbenefits.ItemsSource = benefits;
+			DGbenefits.Items.Refresh();
 		}
 		private void Delete(object sender, RoutedEventArgs e)
 		{
