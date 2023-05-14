@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace AdminPanel.Views
 {
 	/// <summary>
@@ -32,12 +33,13 @@ namespace AdminPanel.Views
 			DataGridView();
 		}
 		ContentControl contentControl;
+		
 		string info = "";
 		IList<Mbenefits> benefits = new List<Mbenefits>();
 		string ConnectionString = $"Server={ConfigurationManager.AppSettings["Server"]};Database={ConfigurationManager.AppSettings["Database"]};Uid={ConfigurationManager.AppSettings["User"]};Pwd={ConfigurationManager.AppSettings["Password"]}";
 		public void GoTo(object sender, RoutedEventArgs e)
 		{
-			switch (((Button)sender).Tag)
+				switch (((Button)sender).Tag)
 			{
 				case "Admins":
 					this.contentControl.Content = new Admins(contentControl);
@@ -52,10 +54,14 @@ namespace AdminPanel.Views
 		}
 		private void LogOut(object sender, RoutedEventArgs e)
 		{
-			Application.Current.Properties["Name"] = "";
-			Application.Current.Properties["ID"] = "";
-			Application.Current.Properties["IfMain"] = "";
-			this.contentControl.Content = new Login(contentControl);
+			MessageBoxResult messageBoxResult = MessageBox.Show("Czy na pewno chcesz się wylogować", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if (messageBoxResult == MessageBoxResult.Yes)
+			{
+				Application.Current.Properties["Name"] = "";
+				Application.Current.Properties["ID"] = "";
+				Application.Current.Properties["IfMain"] = "";
+				this.contentControl.Content = new Login(contentControl);
+			}
 		}
 		private void DataGridView()
 		{
@@ -75,18 +81,22 @@ namespace AdminPanel.Views
 		}
 		private void Delete(object sender, RoutedEventArgs e)
 		{
-			MySqlConnection conn = new MySqlConnection(ConnectionString);
-			Mbenefits row = (Mbenefits)((Button)e.Source).DataContext;
-			int id = row.ID;
-			conn.Open();
-			MySqlCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"DELETE FROM benefitstouser WHERE BenefitID = {id}";
-			cmd.ExecuteNonQuery();
-			cmd = conn.CreateCommand();
-			cmd.CommandText = $"DELETE FROM Benefits WHERE ID = {id}";
-			cmd.ExecuteNonQuery();
-			conn.Close();
-			DataGridView();
+			MessageBoxResult messageBoxResult = MessageBox.Show("Czy na pewno chcesz usunąć ten benefit", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+			if (messageBoxResult == MessageBoxResult.Yes)
+			{
+				MySqlConnection conn = new MySqlConnection(ConnectionString);
+				Mbenefits row = (Mbenefits)((Button)e.Source).DataContext;
+				int id = row.ID;
+				conn.Open();
+				MySqlCommand cmd = conn.CreateCommand();
+				cmd.CommandText = $"DELETE FROM benefitstouser WHERE BenefitID = {id}";
+				cmd.ExecuteNonQuery();
+				cmd = conn.CreateCommand();
+				cmd.CommandText = $"DELETE FROM Benefits WHERE ID = {id}";
+				cmd.ExecuteNonQuery();
+				conn.Close();
+				DataGridView();
+			}
 		}
 		private void Edit(object sender, RoutedEventArgs e)
 		{
