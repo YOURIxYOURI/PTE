@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UserApp.LoginPage"
+             Title=""
+             Shell.NavBarIsVisible="false">
+    <Grid BackgroundColor="#353535">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Padding="30">
+            <StackLayout Orientation="Horizontal">
+                <Image Source="envelope.png" HeightRequest="24" WidthRequest="24" />
+                <Entry Placeholder="Email" Keyboard="Email" Margin="10, 0, 0, 0" TextColor="White"/>
+
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Image Source="lock.png" HeightRequest="24" WidthRequest="24" />
+                <Entry Placeholder="Hasło" IsPassword="True" Margin="10, 0, 0, 0" TextColor="White"  />
+
+            </StackLayout>
+            <Button Text="Zaloguj Się" Clicked="OnLogin" BackgroundColor="#387B29" Margin="0, 20, 0, 0"/>
+        </StackLayout>
+
+        <StackLayout Grid.Row="1" VerticalOptions="End" Padding="30">
+            <Label Text="Nie masz jęszcze konta?" TextColor="White" Margin="0, 0, 0, 15"/>
+            <Button Text="Zarejestruj Się" Clicked="GoToRegister" BackgroundColor="#387B29" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
