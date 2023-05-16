@@ -26,7 +26,7 @@ CREATE TABLE Users(
   	GraduationYear varchar(4),
     WorkPlace varchar(255),
     Password text,
-    Remember boolean,
+    Confirmed boolean,
     Salt text
 );
 

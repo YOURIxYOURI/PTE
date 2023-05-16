@@ -13,17 +13,18 @@
         <StackLayout Grid.Row="0" VerticalOptions="CenterAndExpand" Padding="30">
             <StackLayout Orientation="Horizontal">
                 <Image Source="envelope.png" HeightRequest="24" WidthRequest="24" />
-                <Entry Placeholder="Email" Keyboard="Email" Margin="10, 0, 0, 0" TextColor="White"/>
+                <Entry Placeholder="Email" Keyboard="Email" Margin="10, 0, 0, 0" TextColor="White" x:Name="EmailForm"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Image Source="lock.png" HeightRequest="24" WidthRequest="24" />
-                <Entry Placeholder="Hasło" IsPassword="True" Margin="10, 0, 0, 0" TextColor="White"  />
+                <Entry Placeholder="Hasło" IsPassword="True" Margin="10, 0, 0, 0" TextColor="White"  x:Name="PassForm"/>
             </StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Image Source="lock.png" HeightRequest="24" WidthRequest="24" />
-                <Entry Placeholder="Potwierdź hasło" IsPassword="True" Margin="10, 0, 0, 0" TextColor="White"  />
+                <Entry Placeholder="Potwierdź hasło" IsPassword="True" Margin="10, 0, 0, 0" TextColor="White"  x:Name="ConfPassForm"/>
             </StackLayout>
             <Button Text="Zarejestruj Się" Clicked="OnRegister" BackgroundColor="#387B29" Margin="0, 20, 0, 0"/>
+            <Label Text="" x:Name="info" TextColor="#f52525"/>
         </StackLayout>
 
         <StackLayout Grid.Row="1" VerticalOptions="End" Padding="30">
