@@ -168,7 +168,7 @@ namespace AdminPanel.Views
 						if (user.IfBenefit == true)
 						{
 							MySqlCommand cmd3 = conn.CreateCommand();
-							cmd3.CommandText = $"INSERT INTO benefitstouser VALUES(null, {ID}, {user.ID})";
+							cmd3.CommandText = $"INSERT INTO benefitstouser VALUES({ID}, {user.ID})";
 							cmd3.ExecuteNonQuery();
 						}
 						else

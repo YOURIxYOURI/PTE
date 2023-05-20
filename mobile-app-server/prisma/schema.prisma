@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model admins{
+  id Int @id @default(autoincrement())
+  firstName String 
+  lastName String
+  email String @unique
+  password String 
+  ifMain Boolean
+  salt String
+}
+
+model users{
+  id Int @id @default(autoincrement()) 
+  firstName String 
+  lastName String
+  birtDate String
+  birthPlace String
+  phone String
+  email String @unique
+  adress String
+  grade String @db.VarChar(60)
+  schoolName String
+  graduationYear String
+  workPlace String
+  password String 
+  confirmed Boolean
+  salt String
+  benefits benefitsToUser[]
+}
+model benefits{
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  qrKey String
+  endDate String
+  users benefitsToUser[]
+}
+
+model benefitsToUser{
+  benefitId Int 
+  benefit benefits @relation(fields: [benefitId], references: [id])
+  userId Int
+  user users @relation(fields: [userId], references: [id])
+ 
+  @@id([benefitId,userId])
+}
