@@ -5,6 +5,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import UserScreen from "./screens/UserScreen";
+import SettingScreen from "./screens/SettingScreen";
+import BenefitsScreen from "./screens/BenefitsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -14,11 +16,34 @@ export default function App() {
       <Stack.Navigator
         screenOptions={{
           headerShown: false,
+          gestureEnabled: false,
         }}
       >
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Register" component={RegisterScreen} />
-        <Stack.Screen name="User" component={UserScreen} />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="User"
+          component={UserScreen}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="Benefits"
+          component={BenefitsScreen}
+          options={{ gestureEnabled: false }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingScreen}
+          options={{ gestureEnabled: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

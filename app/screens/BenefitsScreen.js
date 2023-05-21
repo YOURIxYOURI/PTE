@@ -4,7 +4,7 @@ import Colors from "../config/Colors";
 import Server from "../config/Server";
 import Navbar from "./Navbar";
 
-const UserScreen = ({ navigation }) => {
+const BenefitsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Navbar navigation={navigation} />
@@ -21,4 +21,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserScreen;
+export default BenefitsScreen;

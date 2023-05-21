@@ -20,8 +20,12 @@ export class UsersService {
         email,
       },
     });
-    if (user?.email) {
+    if (user?.email && user.password == '') {
       return user;
+    } else if (user?.email && user.password != '') {
+      return {
+        answer: 'Konto na ten adress emai już istnieje',
+      };
     }
     return {
       answer: 'Użyj adresu email podannego w wniosku',
