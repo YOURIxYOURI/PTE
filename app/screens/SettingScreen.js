@@ -2,7 +2,7 @@ import React from "react";
 import { SafeAreaView, StyleSheet } from "react-native";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
-import Navbar from "./Navbar";
+import Navbar from "../components/Navbar";
 
 const SettingScreen = ({ navigation }) => {
   return (

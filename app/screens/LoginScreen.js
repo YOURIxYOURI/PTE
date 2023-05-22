@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   View,
   TextInput,
@@ -13,11 +13,13 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
+import { AuthContext } from "../components/AuthContext";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useContext(AuthContext);
 
   const loginSearch = async () => {
     console.log(email);
@@ -43,7 +45,7 @@ const LoginScreen = ({ navigation }) => {
     if (password != "" && email != "") {
       const responseLogin = await loginSearch();
       if (responseLogin.answer == "Pomyślnie zalogowano") {
-        navigation.navigate("User");
+        login(responseLogin.user);
       } else {
         return setError(responseLogin);
       }

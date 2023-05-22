@@ -3,6 +3,6 @@ export default {
   secondary: "#353535",
   white: "#FFFFFF",
   black: "#000000",
-  placeholder: "#F4F4F4",
+  placeholder: "#DFDFDF",
   errorRed: "#F83434",
 };

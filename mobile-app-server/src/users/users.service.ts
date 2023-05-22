@@ -46,6 +46,7 @@ export class UsersService {
       if (isMatch) {
         return {
           answer: 'Pomyślnie zalogowano',
+          user: user,
         };
       } else {
         return {
