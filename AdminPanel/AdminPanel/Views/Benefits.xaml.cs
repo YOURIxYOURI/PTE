@@ -76,6 +76,7 @@ namespace AdminPanel.Views
 				benefits.Add(new Mbenefits() { ID = reader.GetInt32("ID"), Name = reader.GetString("Name"), QRkey = reader.GetString("QRkey"), EndDate = reader.GetString("EndDate") });
 			}
 			conn.Close();
+			DGbenefits.ItemsSource = null;
 			DGbenefits.ItemsSource = benefits;
 			DGbenefits.Items.Refresh();
 		}

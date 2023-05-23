@@ -47,10 +47,11 @@ CREATE TABLE `benefits` (
 
 -- CreateTable
 CREATE TABLE `benefitsToUser` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
     `benefitId` INTEGER NOT NULL,
     `userId` INTEGER NOT NULL,
 
-    PRIMARY KEY (`benefitId`, `userId`)
+    PRIMARY KEY (`benefitId`, `userId`, `id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey

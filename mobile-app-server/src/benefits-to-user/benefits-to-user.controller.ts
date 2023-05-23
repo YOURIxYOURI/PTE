@@ -26,9 +26,9 @@ export class BenefitsToUserController {
     return this.benefitsToUserService.findAll(user);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.benefitsToUserService.findOne(+id);
+  @Post('benefit')
+  findOne(@Body() id: BenefitsSearchDto) {
+    return this.benefitsToUserService.findOne(id);
   }
 
   @Patch(':id')

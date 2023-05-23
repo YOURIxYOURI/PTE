@@ -13,13 +13,15 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
-import { AuthContext } from "../components/AuthContext";
+import { useSetAtom } from "jotai";
+import { loginAtom } from "../store/AuthAtom";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { login } = useContext(AuthContext);
+  // const { login } = useContext(AuthContext);
+  const login = useSetAtom(loginAtom);
 
   const loginSearch = async () => {
     console.log(email);
@@ -45,6 +47,7 @@ const LoginScreen = ({ navigation }) => {
     if (password != "" && email != "") {
       const responseLogin = await loginSearch();
       if (responseLogin.answer == "Pomyślnie zalogowano") {
+        // login(responseLogin.user);
         login(responseLogin.user);
       } else {
         return setError(responseLogin);

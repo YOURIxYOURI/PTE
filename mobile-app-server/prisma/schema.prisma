@@ -48,10 +48,10 @@ model benefits{
 }
 
 model benefitsToUser{
+  id Int @unique @default(autoincrement())
   benefitId Int 
   benefit benefits @relation(fields: [benefitId], references: [id])
   userId Int
   user users @relation(fields: [userId], references: [id])
- 
-  @@id([benefitId,userId])
+  @@id([benefitId,userId, id])
 }

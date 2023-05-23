@@ -1,17 +1,32 @@
-import React, { useState, useContext } from "react";
-import { SafeAreaView, StyleSheet, Text, Dimensions, View } from "react-native";
+import React, { useState, useContext, useEffect } from "react";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  Dimensions,
+  View,
+  TouchableHighlight,
+} from "react-native";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
 import Navbar from "../components/Navbar";
 import { FlashList } from "@shopify/flash-list";
-import { AuthContext } from "../components/AuthContext";
+import { useAtomValue } from "jotai";
+import { userDataAtom } from "../store/AuthAtom";
+import { Platform, NativeModules } from "react-native";
+import { useRoute } from "@react-navigation/native";
+const { StatusBarManager } = NativeModules;
+
+const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 const BenefitsScreen = ({ navigation }) => {
-  const { userData } = useContext(AuthContext);
-  const [benefits, SetBenefits] = useState([]);
+  const userData = useAtomValue(userDataAtom);
+  const [benefits, SetBenefits] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const getBenefits = async (id) => {
     try {
+      setLoading(false);
       const responseSearch = await fetch(
         `${Server.api_url}/benefits-to-user/benefits`,
         {
@@ -26,30 +41,51 @@ const BenefitsScreen = ({ navigation }) => {
         throw new Error("Zły status");
       }
       const responseDataSearch = await responseSearch.json();
+      console.log(responseDataSearch);
       return SetBenefits(responseDataSearch);
     } catch (error) {
       console.log("[Benefit screen] - function getBenefits");
+    } finally {
+      setLoading(true);
     }
   };
 
-  getBenefits(userData.id);
+  useEffect(() => {
+    getBenefits(userData.id);
+  }, []);
+
+  // if (benefits.length === 0) return navigation.navigate("User");
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.listContainer}>
-        <FlashList
-          data={benefits}
-          estimatedItemSize={15}
-          renderItem={({ item }) => (
-            <SafeAreaView style={styles.item}>
-              <Text style={{ color: Colors.white, fontSize: 20 }}>
-                {item.name}
-              </Text>
-              <Text style={{ color: Colors.placeholder }}>
-                {item.description}
-              </Text>
-            </SafeAreaView>
-          )}
-        />
+        {loading && (
+          <FlashList
+            data={benefits}
+            estimatedItemSize={15}
+            renderItem={({ item }) => {
+              const benefit = item.benefit;
+              return (
+                <View style={styles.item} key={benefit.name}>
+                  <TouchableHighlight
+                    onPress={() =>
+                      navigation.navigate("BenefitDetails", { id: benefit.id })
+                    }
+                  >
+                    <>
+                      <Text style={{ color: Colors.white, fontSize: 20 }}>
+                        {benefit.name}
+                      </Text>
+                      <Text style={{ color: Colors.placeholder }}>
+                        {benefit.description}
+                      </Text>
+                    </>
+                  </TouchableHighlight>
+                </View>
+              );
+            }}
+          />
+        )}
       </View>
       <Navbar navigation={navigation} />
     </SafeAreaView>
@@ -64,11 +100,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   item: {
+    marginBottom: 20,
+    marginHorizontal: 20,
     padding: 10,
     borderRadius: 10,
     backgroundColor: Colors.primary,
   },
   listContainer: {
+    marginTop: STATUSBAR_HEIGHT,
     height: Dimensions.get("screen").height,
     width: Dimensions.get("screen").width,
     flex: 1,

@@ -122,7 +122,7 @@ namespace AdminPanel.Views
 			foreach (Musers user in users)
 			{
 				MySqlCommand cmd2 = conn.CreateCommand();
-				cmd2.CommandText = $"SELECT * FROM benefitstouser WHERE UserID={user.ID}";
+				cmd2.CommandText = $"SELECT * FROM benefitstouser WHERE UserID={user.ID} AND BenefitID={ID}";
 				cmd2.ExecuteNonQuery();
 				bool IfBen = true;
 				MySqlDataReader reader2 = cmd2.ExecuteReader();
@@ -140,7 +140,7 @@ namespace AdminPanel.Views
 				MySqlConnection conn = new MySqlConnection(ConnectionString);
 				conn.Open();
 				MySqlCommand cmd = conn.CreateCommand();
-				cmd.CommandText = $"UPDATE benefits SET Name='{NameForm.Text}',Description='{DescriptionForm.Text}',QRkey='{QRForm.Text}',EndDate='{EndDateForm.SelectedDate}'";
+				cmd.CommandText = $"UPDATE benefits SET Name='{NameForm.Text}',Description='{DescriptionForm.Text}',QRkey='{QRForm.Text}',EndDate='{EndDateForm.SelectedDate}' WHERE id={ID}";
 				cmd.ExecuteNonQuery();
 				foreach(Musers user in DGusers.Items)
 				{
@@ -168,7 +168,7 @@ namespace AdminPanel.Views
 						if (user.IfBenefit == true)
 						{
 							MySqlCommand cmd3 = conn.CreateCommand();
-							cmd3.CommandText = $"INSERT INTO benefitstouser VALUES({ID}, {user.ID})";
+							cmd3.CommandText = $"INSERT INTO benefitstouser VALUES(null,{ID}, {user.ID})";
 							cmd3.ExecuteNonQuery();
 						}
 						else

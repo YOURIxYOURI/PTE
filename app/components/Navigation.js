@@ -8,7 +8,9 @@ import RegisterScreen from "../screens/RegisterScreen";
 import UserScreen from "../screens/UserScreen";
 import SettingScreen from "../screens/SettingScreen";
 import BenefitsScreen from "../screens/BenefitsScreen";
-import { AuthContext } from "./AuthContext";
+import BenefitDetailsScreen from "../screens/BenefitDetailsScreen";
+import { useAtomValue } from "jotai";
+import { isAuthenticatedAtom } from "../store/AuthAtom";
 
 const Stack = createNativeStackNavigator();
 
@@ -60,12 +62,17 @@ const AppNavigator = () => {
           component={SettingScreen}
           options={{ gestureEnabled: false }}
         />
+        <Stack.Screen
+          name="BenefitDetails"
+          component={BenefitDetailsScreen}
+          options={{ gestureEnabled: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
 export default function Navigation() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const isAuthenticated = useAtomValue(isAuthenticatedAtom);
   return <>{isAuthenticated ? <AppNavigator /> : <AuthNavigator />}</>;
 }

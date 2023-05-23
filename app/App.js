@@ -1,12 +1,13 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
 import Navigation from "./components/Navigation";
-import AuthContextProvider from "./components/AuthContext";
+import Colors from "./config/Colors";
 
 export default function App() {
   return (
-    <AuthContextProvider>
+    <View style={{ flex: 1, backgroundColor: Colors.secondary }}>
+      <StatusBar barStyle="light-content" />
       <Navigation />
-    </AuthContextProvider>
+    </View>
   );
 }

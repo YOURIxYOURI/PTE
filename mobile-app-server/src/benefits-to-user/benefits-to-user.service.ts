@@ -23,8 +23,16 @@ export class BenefitsToUserService {
     return benefit;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} benefitsToUser`;
+  async findOne(data: BenefitsSearchDto) {
+    const benefit = await this.prisma.benefitsToUser.findFirst({
+      where: {
+        benefitId: data.userId,
+      },
+      include: {
+        benefit: true,
+      },
+    });
+    return benefit;
   }
 
   update(id: number, updateBenefitsToUserDto: UpdateBenefitsToUserDto) {
