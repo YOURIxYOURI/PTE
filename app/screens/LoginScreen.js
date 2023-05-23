@@ -24,7 +24,6 @@ const LoginScreen = ({ navigation }) => {
   const login = useSetAtom(loginAtom);
 
   const loginSearch = async () => {
-    console.log(email);
     try {
       const responseSearch = await fetch(`${Server.api_url}/users/login`, {
         method: "POST",

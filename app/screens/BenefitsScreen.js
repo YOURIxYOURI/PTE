@@ -14,7 +14,8 @@ import { FlashList } from "@shopify/flash-list";
 import { useAtomValue } from "jotai";
 import { userDataAtom } from "../store/AuthAtom";
 import { Platform, NativeModules } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { useSetAtom } from "jotai";
+import { setIdAtom } from "../store/AuthAtom";
 const { StatusBarManager } = NativeModules;
 
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
@@ -54,6 +55,7 @@ const BenefitsScreen = ({ navigation }) => {
     getBenefits(userData.id);
   }, []);
 
+  const set = useSetAtom(setIdAtom);
   // if (benefits.length === 0) return navigation.navigate("User");
 
   return (
@@ -68,9 +70,10 @@ const BenefitsScreen = ({ navigation }) => {
               return (
                 <View style={styles.item} key={benefit.name}>
                   <TouchableHighlight
-                    onPress={() =>
-                      navigation.navigate("BenefitDetails", { id: benefit.id })
-                    }
+                    onPress={() => {
+                      set(benefit.id);
+                      navigation.navigate("BenefitDetails");
+                    }}
                   >
                     <>
                       <Text style={{ color: Colors.white, fontSize: 20 }}>

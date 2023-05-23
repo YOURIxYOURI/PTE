@@ -1,17 +1,23 @@
-import React from "react";
-import { View, StyleSheet, SafeAreaView } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  StyleSheet,
+  SafeAreaView,
+  Text,
+  TouchableHighlight,
+} from "react-native";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
 import Navbar from "../components/Navbar";
+import { useAtomValue } from "jotai";
+import { benefitIdAtom } from "../store/AuthAtom";
+import SvgQRCode from "react-native-qrcode-svg";
 
 const BenefitDetailsScreen = ({ navigation }) => {
-  const [benefits, SetBenefits] = useState(null);
+  const [benefit, SetBenefit] = useState(null);
   const [loading, setLoading] = useState(false);
-  const route = useRoute();
-  const { id } = route.params;
-  const ID = JSON.stringify(id);
-  console.log("To jest moje id " + { ID });
+  const [ifQr, setIfQr] = useState(true);
+  const ID = useAtomValue(benefitIdAtom);
 
   const getBenefit = async (id) => {
     try {
@@ -30,16 +36,34 @@ const BenefitDetailsScreen = ({ navigation }) => {
         throw new Error("Zły status");
       }
       const responseDataSearch = await responseSearch.json();
-      console.log(responseDataSearch);
-      return SetBenefits(responseDataSearch);
+      return SetBenefit(responseDataSearch.benefit);
     } catch (error) {
-      console.log("[Benefit screen] - function getBenefits");
+      console.log("[BenefitDetails screen] - function getBenefit");
     } finally {
       setLoading(true);
     }
   };
+
+  useEffect(() => {
+    getBenefit(ID);
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
+      {loading && (
+        <>
+          <Text>{benefit.name}</Text>
+          <Text>{benefit.description}</Text>
+          {ifQr ? (
+            <SvgQRCode value={benefit.qrKey} />
+          ) : (
+            <Text>{benefit.qrKey}</Text>
+          )}
+          <TouchableHighlight onPress={ifQr ? setIfQr(false) : setIfQr(true)}>
+            <Text>Zamień na tekst</Text>
+          </TouchableHighlight>
+        </>
+      )}
       <Navbar navigation={navigation} />
     </SafeAreaView>
   );
