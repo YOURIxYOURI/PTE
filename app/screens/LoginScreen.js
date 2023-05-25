@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   View,
   TextInput,
@@ -9,12 +9,15 @@ import {
   TouchableHighlight,
   SafeAreaView,
   Image,
+  Platform,
+  NativeModules,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
 import { useSetAtom } from "jotai";
 import { loginAtom } from "../store/AuthAtom";
+
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -42,11 +45,12 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
+
   const handleLogin = async () => {
     if (password != "" && email != "") {
       const responseLogin = await loginSearch();
       if (responseLogin.answer == "Pomyślnie zalogowano") {
-        // login(responseLogin.user);
+      
         login(responseLogin.user);
       } else {
         return setError(responseLogin);
@@ -59,6 +63,7 @@ const LoginScreen = ({ navigation }) => {
   const handleRegister = () => {
     navigation.navigate("Register");
   };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -160,7 +165,7 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   buttonText: {
-    color: "white",
+    color: Colors.white,
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",

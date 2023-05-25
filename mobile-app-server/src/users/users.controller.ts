@@ -30,6 +30,10 @@ export class UsersController {
   findOne(@Body() user: UserEmailDto) {
     return this.usersService.findOne(user.email);
   }
+  @Post('findUser')
+  findUser(@Body() user: UpdateUserDto) {
+    return this.usersService.findUser(user);
+  }
 
   @Post('login')
   findOneLogin(@Body() user: UpdateUserDto) {

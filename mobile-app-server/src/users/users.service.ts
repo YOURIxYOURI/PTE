@@ -32,6 +32,22 @@ export class UsersService {
     };
   }
 
+  async findUser(updateUserDto: UpdateUserDto) {
+    const user = await this.prisma.users.findUnique({
+      where: {
+        email: updateUserDto.email,
+      },
+    });
+    if (user?.email && user?.password != '') {
+      if (updateUserDto.password === user.password) {
+        return {
+          answer: 'Pomyślnie zalogowano',
+          user: user,
+        };
+      }
+    }
+  }
+
   async findOneLogin(updateUserDto: UpdateUserDto) {
     const user = await this.prisma.users.findUnique({
       where: {

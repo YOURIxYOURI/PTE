@@ -4,14 +4,19 @@ import {
   StyleSheet,
   SafeAreaView,
   Text,
-  TouchableHighlight,
+  TouchableWithoutFeedback,
+  NativeModules,
+  Dimensions,
 } from "react-native";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
 import Navbar from "../components/Navbar";
 import { useAtomValue } from "jotai";
 import { benefitIdAtom } from "../store/AuthAtom";
-import SvgQRCode from "react-native-qrcode-svg";
+import QRCode from "react-native-qrcode-svg";
+const { StatusBarManager } = NativeModules;
+
+const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 const BenefitDetailsScreen = ({ navigation }) => {
   const [benefit, SetBenefit] = useState(null);
@@ -51,18 +56,25 @@ const BenefitDetailsScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       {loading && (
-        <>
-          <Text>{benefit.name}</Text>
-          <Text>{benefit.description}</Text>
-          {ifQr ? (
-            <SvgQRCode value={benefit.qrKey} />
-          ) : (
-            <Text>{benefit.qrKey}</Text>
-          )}
-          <TouchableHighlight onPress={ifQr ? setIfQr(false) : setIfQr(true)}>
-            <Text>Zamień na tekst</Text>
-          </TouchableHighlight>
-        </>
+        <View style={styles.contentCointaner}>
+          <Text style={styles.headerText}>{benefit.name}</Text>
+          <Text style={styles.descriptionText}>{benefit.description}</Text>
+          <View style={styles.QRContainer}>
+            {ifQr ? (
+              <QRCode size={200} value={benefit.qrKey} />
+            ) : (
+              <Text style={styles.qrText}>{benefit.qrKey}</Text>
+            )}
+            <TouchableWithoutFeedback
+              onPress={() => {
+                ifQr ? setIfQr(false) : setIfQr(true);
+              }}
+              style={styles.qrChangeButton}
+            >
+              <Text style={styles.buttonText}>Zamień na tekst</Text>
+            </TouchableWithoutFeedback>
+          </View>
+        </View>
       )}
       <Navbar navigation={navigation} />
     </SafeAreaView>
@@ -74,6 +86,46 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: Colors.secondary,
     justifyContent: "center",
+    alignItems: "center",
+  },
+  headerText: {
+    textAlign: "left",
+    fontSize: 35,
+    fontWeight: "bold",
+    color: Colors.white,
+    paddingTop: 0,
+  },
+  qrText: {
+    fontSize: 20,
+    marginTop: 5,
+    color: Colors.white,
+  },
+  descriptionText: {
+    textAlign: "left",
+    fontSize: 20,
+    marginTop: 5,
+    color: Colors.placeholder,
+  },
+  contentCointaner: {
+    marginTop: STATUSBAR_HEIGHT,
+    height: Dimensions.get("screen").height,
+    width: Dimensions.get("screen").width,
+    flex: 1,
+    paddingTop: 30,
+    paddingLeft: 20,
+  },
+  buttonText: {
+    marginTop: 40,
+    color: Colors.primary,
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    textDecorationLine: "underline",
+  },
+  QRContainer: {
+    flex: 1,
+    justifyContent: "flex-start",
+    paddingTop: 30,
     alignItems: "center",
   },
 });

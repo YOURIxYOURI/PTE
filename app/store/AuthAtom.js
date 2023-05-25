@@ -1,4 +1,5 @@
 import { atom } from "jotai";
+import { Platform } from "react-native";
 
 export const isAuthenticatedAtom = atom(false);
 export const userDataAtom = atom(null);
@@ -10,13 +11,12 @@ export const loginAtom = atom(null, (get, set, update) => {
 });
 
 export const setIdAtom = atom(null, (get, set, update) => {
-    set(benefitIdAtom, update);
-  });
+  set(benefitIdAtom, update);
+});
 
-  export const getIdAtom = atom(null, (get, set, update) => {
-    get(benefitIdAtom);
-  });
-  
+export const getIdAtom = atom(null, (get, set, update) => {
+  get(benefitIdAtom);
+});
 
 export const logoutAtom = atom(null, (get, set) => {
   set(userDataAtom, null);

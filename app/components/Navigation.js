@@ -26,7 +26,7 @@ const AuthNavigator = () => {
         <Stack.Screen
           name="Login"
           component={LoginScreen}
-          options={{ gestureEnabled: false }}
+          options={{ gestureEnabled: false}}
         />
         <Stack.Screen
           name="Register"

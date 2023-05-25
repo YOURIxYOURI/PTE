@@ -76,7 +76,13 @@ const BenefitsScreen = ({ navigation }) => {
                     }}
                   >
                     <>
-                      <Text style={{ color: Colors.white, fontSize: 20 }}>
+                      <Text
+                        style={{
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: "bold",
+                        }}
+                      >
                         {benefit.name}
                       </Text>
                       <Text style={{ color: Colors.placeholder }}>
