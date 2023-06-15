@@ -18,6 +18,7 @@ import { useSetAtom } from "jotai";
 import { setIdAtom } from "../store/AuthAtom";
 const { StatusBarManager } = NativeModules;
 
+
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 const BenefitsScreen = ({ navigation }) => {
@@ -56,7 +57,6 @@ const BenefitsScreen = ({ navigation }) => {
   }, []);
 
   const set = useSetAtom(setIdAtom);
-  // if (benefits.length === 0) return navigation.navigate("User");
 
   return (
     <SafeAreaView style={styles.container}>

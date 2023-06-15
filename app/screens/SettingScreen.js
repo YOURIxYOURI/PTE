@@ -17,46 +17,53 @@ import { logoutAtom } from "../store/AuthAtom";
 import { Divider } from "@rneui/themed";
 import { AntDesign } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
+import * as SecureStore from "expo-secure-store";
+import token from "../config/Token";
 
 const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBarManager.HEIGHT;
 
 const SettingScreen = ({ navigation }) => {
+  const handleDeleteToken = async () => {
+    await SecureStore.deleteItemAsync(token.login);
+    await SecureStore.deleteItemAsync(token.pass);
+    logout()
+  };
   const logout = useSetAtom(logoutAtom);
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.contentCointaner}>
         <TouchableWithoutFeedback
           onPress={() => {
-            logout();
+
           }}
           style={styles.menuElement}
         >
           <View style={styles.menuElementContainer}>
-            <Text style={styles.menuText}>Przycisk</Text>
+            <Text style={styles.menuText}>Przycisk 1</Text>
             <AntDesign name="right" size={20} color={Colors.white} />
           </View>
         </TouchableWithoutFeedback>
         <Divider width={1} />
         <TouchableWithoutFeedback
           onPress={() => {
-            logout();
+
           }}
           style={styles.menuElement}
         >
           <View style={styles.menuElementContainer}>
-            <Text style={styles.menuText}>To jest przycisk</Text>
+            <Text style={styles.menuText}>przycisk 2</Text>
             <AntDesign name="right" size={20} color={Colors.white} />
           </View>
         </TouchableWithoutFeedback>
         <Divider width={1} />
         <TouchableWithoutFeedback
           onPress={() => {
-            logout();
+
           }}
           style={styles.menuElement}
         >
           <View style={styles.menuElementContainer}>
-            <Text style={styles.menuText}>To też jest przycisk ez</Text>
+            <Text style={styles.menuText}>przycisk 3</Text>
             <AntDesign name="right" size={20} color={Colors.white} />
           </View>
         </TouchableWithoutFeedback>
@@ -64,7 +71,7 @@ const SettingScreen = ({ navigation }) => {
 
         <TouchableWithoutFeedback
           onPress={() => {
-            logout();
+            handleDeleteToken()
           }}
           style={styles.menuElement}
         >

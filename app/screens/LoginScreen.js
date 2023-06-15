@@ -15,9 +15,10 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../config/Colors";
 import Server from "../config/Server";
+import token from "../config/Token";
 import { useSetAtom } from "jotai";
 import { loginAtom } from "../store/AuthAtom";
-
+import * as SecureStore from "expo-secure-store";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
@@ -45,12 +46,18 @@ const LoginScreen = ({ navigation }) => {
     }
   };
 
-
   const handleLogin = async () => {
     if (password != "" && email != "") {
       const responseLogin = await loginSearch();
       if (responseLogin.answer == "Pomyślnie zalogowano") {
-      
+        SecureStore.setItemAsync(
+          token.login,
+          email
+        );
+        SecureStore.setItemAsync(
+          token.pass,
+          password
+        );
         login(responseLogin.user);
       } else {
         return setError(responseLogin);
@@ -59,11 +66,23 @@ const LoginScreen = ({ navigation }) => {
       return setError({ answer: "Wszytkie pola są wymagane" });
     }
   };
-
+  const handleGetToken = async () => {
+    const securedLogin = await 
+      SecureStore.getItemAsync(token.login)
+    ;
+    const securedPass = await 
+      SecureStore.getItemAsync(token.pass)
+    ;
+    if (securedLogin && securedPass) {
+      setEmail(securedLogin);
+      setPassword(securedPass);
+      handleLogin()
+    }
+  };
   const handleRegister = () => {
     navigation.navigate("Register");
   };
-
+  handleGetToken();
 
   return (
     <SafeAreaView style={styles.container}>
